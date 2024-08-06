@@ -95,7 +95,7 @@ target_sources(
 target_sources_ifdef(CONFIG_NATIVE_APPLICATION app PRIVATE mocks/vch/vch.cpp mocks/xrun/xrun.cpp mocks/xstat/xstat.cpp)
 
 # Include domain IPL and dtb for xen_dom0 snippet
-target_sources_ifdef(CONFIG_XEN_DOM0 app PRIVATE src/domains/dom_runner.c )
+target_sources_ifdef(CONFIG_XEN_DOM0 app PRIVATE src/domains/dom_runner.c)
 
 # Include source files for DomD support
 
@@ -107,7 +107,9 @@ target_sources_ifdef(CONFIG_BOARD_RCAR_H3ULCB_CA57 app PRIVATE src/domains/domd/
 target_sources_ifdef(CONFIG_DOMU_ENABLE app PRIVATE src/domains/domu/domu_cfg.c)
 
 # Include HW-specific source file
-target_sources_ifndef(CONFIG_NATIVE_APPLICATION app PRIVATE src/bsp/reboot.c src/bsp/mount.c)
+target_sources_ifndef(CONFIG_NATIVE_APPLICATION app PRIVATE src/bsp/reboot.c)
+target_sources_ifdef(CONFIG_FILE_SYSTEM_LITTLEFS app PRIVATE src/bsp/mount_littlefs.c)
+target_sources_ifdef(CONFIG_FAT_FILESYSTEM_ELM app PRIVATE src/bsp/mount_fatfs.c)
 
 # ######################################################################################################################
 # Versioning
