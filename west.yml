@@ -21,10 +21,13 @@ manifest:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
 
+    - name: GrygiriiS
+      url-base: https://github.com/GrygiriiS
+
   projects:
     - name: zephyr
-      remote: xen-troops
-      revision: "zephyr/v3.6.0/xt-v2.0.0"
+      remote: GrygiriiS
+      revision: "zephyr-v3.6.0-xt_rpi"
       west-commands: scripts/west-commands.yml
 
     - name: aos_core_lib_cpp
@@ -41,7 +44,7 @@ manifest:
 
     - name: zephyr-optee-client
       remote: xen-troops
-      revision: "v0.0.1"
+      revision: "master"
 
     - name: littlefs
       remote: zephyrproject-rtos
@@ -61,3 +64,7 @@ manifest:
       path: modules/crypto/mbedtls
       groups:
         - crypto
+
+    - name: fatfs
+      remote: zephyrproject-rtos
+      revision: master

@@ -30,7 +30,13 @@ int main(void)
     printk("*** Aos core size: %lu ***\n", sizeof(App));
 
 #if !defined(CONFIG_NATIVE_APPLICATION)
+
+#if !defined(CONFIG_FILE_SYSTEM_LITTLEFS)
+    auto ret = storage_init();
+#else
     auto ret = littlefs_mount();
+#endif
+
     __ASSERT(ret == 0, "Error mounting little FS: %s [%d]", strerror(ret), ret);
 
     ret = TEE_SupplicantInit();
@@ -46,9 +52,13 @@ int main(void)
 
     auto& app = App::Get();
 
-    auto err = app.Init();
-    __ASSERT(err.IsNone(), "Error initializing application: %s [%d] (%s:%d)", err.Message(), err.Errno(),
-        err.FileName(), err.LineNumber());
+    printk("*** RPI build #6 ***\n");
 
+    auto err = app.Init();
+    //    __ASSERT(err.IsNone(), "Error initializing application: %s [%d] (%s:%d)", err.Message(), err.Errno(),
+    //        err.FileName(), err.LineNumber());
+
+    while (1)
+        k_msleep(100);
     return 0;
 }
