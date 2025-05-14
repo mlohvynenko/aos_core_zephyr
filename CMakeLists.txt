@@ -83,6 +83,7 @@ target_sources(
             src/iamclient/iamclient.cpp
             src/image/imagehandler.cpp
             src/logger/fsbackend.cpp
+            src/logger/fslogreader.cpp
             src/logger/logger.cpp
             src/monitoring/resourceusageprovider.cpp
             src/nodeinfoprovider/nodeinfoprovider.cpp
